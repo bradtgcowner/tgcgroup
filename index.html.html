@@ -1,0 +1,305 @@
+```html
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TGC Group | Strategic Brand Development & Crisis PR</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Inter & Montserrat -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        charcoal: {
+                            900: '#0F0F12',
+                            800: '#16161A',
+                            700: '#1E1E24',
+                            600: '#2A2A32',
+                            500: '#3A3A45'
+                        },
+                        accent: {
+                            light: '#F4F4F6',
+                            silver: '#A1A1AA',
+                            muted: '#71717A',
+                            border: '#27272A'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Montserrat', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        body {
+            background-color: #0F0F12;
+            color: #F4F4F6;
+            font-family: 'Inter', sans-serif;
+        }
+        
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0F0F12;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #2A2A32;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #3A3A45;
+        }
+
+        /* Glassmorphism Effect */
+        .glass-panel {
+            background: rgba(30, 30, 36, 0.65);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        
+        .glass-card {
+            background: rgba(22, 22, 26, 0.75);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .glass-card:hover {
+            border-color: rgba(255, 255, 255, 0.2);
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.5);
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, #FFFFFF 0%, #A1A1AA 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Modern subtle grid background */
+        .bg-grid-pattern {
+            background-size: 40px 40px;
+            background-image: 
+                linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+        }
+
+        .active-tab {
+            border-color: #FFFFFF !important;
+            background-color: rgba(255, 255, 255, 0.08) !important;
+            color: #FFFFFF !important;
+        }
+    </style>
+</head>
+<body class="bg-charcoal-900 text-accent-light selection:bg-white selection:text-charcoal-900 min-h-screen flex flex-col justify-between">
+
+    <!-- NAVIGATION HEADER -->
+    <header class="fixed top-0 left-0 w-full z-40 glass-panel border-b border-accent-border/50 transition-all duration-300" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <!-- Brand Logo -->
+            <a href="#" class="flex items-center gap-3 group">
+                <div class="w-10 h-10 bg-white text-charcoal-900 font-display font-black text-xl flex items-center justify-center rounded tracking-tighter group-hover:bg-accent-silver transition-colors">
+                    TGC
+                </div>
+                <div class="flex flex-col">
+                    <span class="font-display font-extrabold text-lg tracking-wider text-white">TGC GROUP</span>
+                    <span class="text-[10px] text-accent-silver tracking-widest uppercase font-mono">St. Louis, MO</span>
+                </div>
+            </a>
+
+            <!-- Desktop Nav Links -->
+            <nav class="hidden md:flex items-center space-x-8 text-sm font-medium tracking-wide">
+                <a href="#services" class="text-accent-silver hover:text-white transition-colors">Services</a>
+                <a href="#about" class="text-accent-silver hover:text-white transition-colors">About Firm</a>
+                <a href="#calculator" class="text-accent-silver hover:text-white transition-colors">SOP Scope Calculator</a>
+                <a href="#contact" class="text-accent-silver hover:text-white transition-colors">Contact</a>
+            </nav>
+
+            <!-- CTA & Mobile Toggle -->
+            <div class="flex items-center gap-4">
+                <button onclick="openBookingModal()" class="hidden sm:inline-flex items-center justify-center px-5 py-2.5 text-xs uppercase tracking-widest font-semibold text-charcoal-900 bg-white hover:bg-accent-silver transition-all duration-200 rounded-sm shadow-lg hover:shadow-white/10">
+                    <i class="fa-solid me-2 fa-calendar-check text-xs"></i> Book Consultation
+                </button>
+
+                <!-- Mobile Menu Button -->
+                <button id="mobile-menu-btn" onclick="toggleMobileMenu()" class="md:hidden text-accent-silver hover:text-white p-2 rounded focus:outline-none">
+                    <i class="fa-solid fa-bars text-xl" id="menu-icon"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Navigation Menu -->
+        <div id="mobile-menu" class="hidden md:hidden glass-panel border-b border-accent-border px-4 pt-2 pb-6 space-y-4">
+            <a href="#services" onclick="toggleMobileMenu()" class="block text-accent-silver hover:text-white py-2 border-b border-charcoal-700">Services</a>
+            <a href="#about" onclick="toggleMobileMenu()" class="block text-accent-silver hover:text-white py-2 border-b border-charcoal-700">About Firm</a>
+            <a href="#calculator" onclick="toggleMobileMenu()" class="block text-accent-silver hover:text-white py-2 border-b border-charcoal-700">SOP Scope Calculator</a>
+            <a href="#contact" onclick="toggleMobileMenu()" class="block text-accent-silver hover:text-white py-2 border-b border-charcoal-700">Contact</a>
+            <button onclick="toggleMobileMenu(); openBookingModal();" class="w-full mt-2 py-3 text-xs uppercase tracking-widest font-semibold text-charcoal-900 bg-white text-center rounded-sm">
+                Book Consultation
+            </button>
+        </div>
+    </header>
+
+    <main class="flex-grow pt-20">
+        <!-- HERO SECTION -->
+        <section class="relative min-h-[85vh] flex items-center justify-center bg-grid-pattern px-4 sm:px-6 lg:px-8 overflow-hidden py-16">
+            <!-- Ambient Glow -->
+            <div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-white/5 rounded-full blur-3xl pointer-events-none"></div>
+
+            <div class="max-w-5xl mx-auto text-center relative z-10">
+                <!-- Location Badge -->
+                <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-charcoal-800 border border-charcoal-600 text-xs text-accent-silver mb-8 tracking-wide">
+                    <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                    Headquartered in St. Louis, Missouri • Serving Global Enterprise
+                </div>
+
+                <!-- Main Tagline -->
+                <h1 class="font-display text-4xl sm:text-6xl lg:text-7xl font-black uppercase tracking-tight text-white mb-6 leading-[1.1]">
+                    Precision Strategy. <br class="hidden sm:inline"/>
+                    <span class="gradient-text">Unshakeable Authority.</span>
+                </h1>
+
+                <!-- Brief Intro Copy -->
+                <p class="text-base sm:text-xl text-accent-silver max-w-3xl mx-auto font-light leading-relaxed mb-10">
+                    TGC Group architects bulletproof business architectures, navigates high-stakes corporate PR crises, and designs scale-ready operational SOPs for ambitious brands.
+                </p>
+
+                <!-- Dual CTAs -->
+                <div class="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6">
+                    <button onclick="openBookingModal()" class="w-full sm:w-auto px-8 py-4 bg-white text-charcoal-900 text-xs font-bold uppercase tracking-widest hover:bg-accent-silver transition-all duration-300 rounded-sm shadow-xl flex items-center justify-center gap-3 group">
+                        <span>Schedule Consultation</span>
+                        <i class="fa-solid fa-arrow-right text-xs group-hover:translate-x-1 transition-transform"></i>
+                    </button>
+                    <a href="#services" class="w-full sm:w-auto px-8 py-4 bg-charcoal-800 border border-charcoal-600 text-white text-xs font-bold uppercase tracking-widest hover:bg-charcoal-700 hover:border-accent-muted transition-all duration-300 rounded-sm text-center">
+                        Explore Services
+                    </a>
+                </div>
+
+                <!-- Quick Metrics Bar -->
+                <div class="mt-20 grid grid-cols-2 md:grid-cols-4 gap-6 pt-12 border-t border-charcoal-800">
+                    <div class="text-center">
+                        <div class="font-display text-3xl font-bold text-white">24/7</div>
+                        <div class="text-xs text-accent-muted tracking-wider uppercase mt-1">Crisis Response Unit</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="font-display text-3xl font-bold text-white">100%</div>
+                        <div class="text-xs text-accent-muted tracking-wider uppercase mt-1">Confidentiality Guarantee</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="font-display text-3xl font-bold text-white">500+</div>
+                        <div class="text-xs text-accent-muted tracking-wider uppercase mt-1">SOP Systems Authored</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="font-display text-3xl font-bold text-white">STL</div>
+                        <div class="text-xs text-accent-muted tracking-wider uppercase mt-1">Missouri Executive Hub</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SERVICES SECTION -->
+        <section id="services" class="py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto border-t border-charcoal-800">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-16">
+                <div>
+                    <span class="text-xs font-mono tracking-widest uppercase text-accent-silver block mb-2">// Core Capabilities</span>
+                    <h2 class="font-display text-3xl sm:text-5xl font-extrabold uppercase text-white tracking-tight">Our Pillars of Execution</h2>
+                </div>
+                <p class="text-accent-silver max-w-md text-sm mt-4 md:mt-0 leading-relaxed">
+                    Designed for high-growth firms, modern enterprises, and executives facing reputational volatility or operational friction.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <!-- Service 1: Crisis PR -->
+                <div class="glass-card p-8 rounded-sm relative flex flex-col justify-between group">
+                    <div>
+                        <div class="w-14 h-14 bg-charcoal-800 border border-charcoal-600 rounded-sm flex items-center justify-center text-white text-2xl mb-8 group-hover:border-white transition-colors">
+                            <i class="fa-solid fa-shield-halved"></i>
+                        </div>
+                        <span class="text-[10px] font-mono tracking-widest uppercase text-accent-silver">Pillar 01</span>
+                        <h3 class="font-display text-xl font-bold text-white uppercase mt-2 mb-4">Crisis PR & Reputation Management</h3>
+                        <p class="text-sm text-accent-silver leading-relaxed font-light mb-6">
+                            High-stakes corporate crisis response, proactive brand protection, and rapid mitigation. We engineer strategic media narratives, provide real-time public sentiment control, and train executives to navigate high-pressure media scrutiny with composure and precision.
+                        </p>
+                        <ul class="space-y-2 text-xs text-accent-silver border-t border-charcoal-700/60 pt-6 mb-8">
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-white text-[10px]"></i> Emergency Narrative Containment</li>
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-white text-[10px]"></i> C-Suite Media Preparation & Spokesperson Training</li>
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-white text-[10px]"></i> SEO Cleanups & Digital Footprint Audits</li>
+                        </ul>
+                    </div>
+                    <button onclick="openBookingModal('Crisis Management Strategy Session')" class="w-full py-3 bg-charcoal-800 border border-charcoal-600 text-xs font-semibold uppercase tracking-wider text-white hover:bg-white hover:text-charcoal-900 transition-all rounded-sm">
+                        Book Strategy Session
+                    </button>
+                </div>
+
+                <!-- Service 2: Brand Management -->
+                <div class="glass-card p-8 rounded-sm relative flex flex-col justify-between group">
+                    <div>
+                        <div class="w-14 h-14 bg-charcoal-800 border border-charcoal-600 rounded-sm flex items-center justify-center text-white text-2xl mb-8 group-hover:border-white transition-colors">
+                            <i class="fa-solid fa-chess-king"></i>
+                        </div>
+                        <span class="text-[10px] font-mono tracking-widest uppercase text-accent-silver">Pillar 02</span>
+                        <h3 class="font-display text-xl font-bold text-white uppercase mt-2 mb-4">Strategic Brand Management & Development</h3>
+                        <p class="text-sm text-accent-silver leading-relaxed font-light mb-6">
+                            Brand identity architecture, market positioning strategy, and long-term equity growth. We create distinctive brand systems that command market authority, define competitive moats, and facilitate seamless market entry or comprehensive brand repositioning.
+                        </p>
+                        <ul class="space-y-2 text-xs text-accent-silver border-t border-charcoal-700/60 pt-6 mb-8">
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-white text-[10px]"></i> Enterprise Brand Architecture & Identity</li>
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-white text-[10px]"></i> Market Positioning & Competitive Moating</li>
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-white text-[10px]"></i> Corporate Value Proposition & Messaging</li>
+                        </ul>
+                    </div>
+                    <button onclick="openBookingModal('Initial Discovery Call')" class="w-full py-3 bg-charcoal-800 border border-charcoal-600 text-xs font-semibold uppercase tracking-wider text-white hover:bg-white hover:text-charcoal-900 transition-all rounded-sm">
+                        Book Discovery Call
+                    </button>
+                </div>
+
+                <!-- Service 3: SOPs & Business Process Engineering -->
+                <div class="glass-card p-8 rounded-sm relative flex flex-col justify-between group">
+                    <div>
+                        <div class="w-14 h-14 bg-charcoal-800 border border-charcoal-600 rounded-sm flex items-center justify-center text-white text-2xl mb-8 group-hover:border-white transition-colors">
+                            <i class="fa-solid fa-diagram-project"></i>
+                        </div>
+                        <span class="text-[10px] font-mono tracking-widest uppercase text-accent-silver">Pillar 03</span>
+                        <h3 class="font-display text-xl font-bold text-white uppercase mt-2 mb-4">SOPs & Business Process Engineering</h3>
+                        <p class="text-sm text-accent-silver leading-relaxed font-light mb-6">
+                            End-to-end operational design, Standard Operating Procedure (SOP) authoring, and workflow optimization. Whether drafting framework documentation for high-growth startups or overhauling legacy systems for enterprise revisions, we install operational clarity.
+                        </p>
+                        <ul class="space-y-2 text-xs text-accent-silver border-t border-charcoal-700/60 pt-6 mb-8">
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-white text-[10px]"></i> Startup Process Blueprints & Standard Documentation</li>
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-white text-[10px]"></i> Legacy Enterprise SOP Audits & Revisions</li>
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-white text-[10px]"></i> Scalable Operational Workflows & Quality Assurance</li>
+                        </ul>
+                    </div>
+                    <button onclick="openBookingModal('SOP & Process Audit')" class="w-full py-3 bg-charcoal-800 border border-charcoal-600 text-xs font-semibold uppercase tracking-wider text-white hover:bg-white hover:text-charcoal-900 transition-all rounded-sm">
+                        Request SOP Audit
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- ABOUT FIRM & METHODOLOGY -->
+        <section id="about" class="py-20 bg-charcoal-800/40 border-y border-charcoal-800 px-4 sm:px-6 lg:px-8">
+            <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div>
+                    <span class="text-xs font-mono tracking-widest uppercase text-accent-silver block mb-2">// St. Louis Executive Headquarters</span>
+                    <h2 class="font-display text-3xl sm:text-4xl font-extrabold uppercase text-white tracking-tight mb-6">Built for Strategic Clarity and Tactical Precision</h2>
+                    <p class="text-accent-silver text-sm leading-relaxed mb-6 font-light">
+                        At <strong class="text-white font-medium">TGC Group</strong>, we believe that brand value is forged in two places: how effectively you communicate under pressure, and how flawlessly you execute behind closed doors.
+                    </p>
+                    <p class="text-accent-silver text-sm leading-relaxed mb-8 font-light">
+                        Operating from St. Louis, Missouri, our firm serves as an outsourced strategic command center for leadership teams nationwid
